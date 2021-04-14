@@ -25,6 +25,7 @@ class SiteBody extends React.Component {
   componentDidMount() {
     Axios.get('http://localhost:3333/snacks', auth).then(
       response => {
+        console.log('Initilized')
         console.log(response.data)
         const snacks = response.data
         this.setState({snacks, availableSnacks: [...snacks].sort(this.sortByVoteCount)})
@@ -53,7 +54,7 @@ class SiteBody extends React.Component {
 
   vote = (id) => {
     if (this.state.votesRemaining > 0) {
-      Axios.post(`http://localhost:3000/snacks/vote/${id}`, {}, auth).then(
+      Axios.post(`http://localhost:3333/snacks/vote/${id}`, {}, auth).then(
         response => {
           console.log(response.data)
           const updatedSnack = response.data
